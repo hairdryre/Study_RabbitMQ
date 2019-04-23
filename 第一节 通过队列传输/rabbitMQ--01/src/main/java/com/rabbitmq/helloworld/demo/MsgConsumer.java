@@ -1,4 +1,4 @@
-package com.rabbitmq.helloworld.demo;
+﻿package com.rabbitmq.helloworld.demo;
 
 import com.rabbitmq.client.*;
 import org.slf4j.Logger;
@@ -49,7 +49,7 @@ public class MsgConsumer {
             };
 
             //收到了消息后，提示邮局，我已经收到消息了。可以给我发送其它消息
-            //第二个参数autoAck如果为false，那么消息会一直保存在RabbimtMQ服务器
+            //第二个参数autoAck如果为false，那么消息会一直保存在RabbitMQ服务器
             //消费者没有确认消息被消费，消息一直留在队列中，只有当从有新的消费者加入时，消息被分发到新的消费者。
             channel.basicConsume(QUEUE_NAME, true, consumer);
         } catch (Exception e) {
