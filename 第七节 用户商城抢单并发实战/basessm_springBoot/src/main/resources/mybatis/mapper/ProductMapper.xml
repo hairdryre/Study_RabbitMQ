@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.safesoft.springboot.basessm.dao.ProductDao">
+
+    <insert id="insertProductRecord">
+        INSERT INTO t_product_record(productNo,userId) VALUES(#{productNo},#{userId})
+    </insert>
+
+
+    <update id="updateProduct">
+        UPDATE t_product SET total = total - 1 where productNo = #{productNo}
+        <!-- 下面追加的total>0非常重要-->
+        AND total > 0
+    </update>
+    <select id="selectProductByNo" resultType="com.safesoft.springboot.basessm.entity.Product">
+        SELECT * FROM `t_product` where productNo = #{productNo}
+        <!-- 下面追加的total>0非常重要-->
+        AND total > 0
+    </select>
+</mapper>

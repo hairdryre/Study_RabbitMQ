@@ -1,0 +1,23 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/basessm
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: 3333
+        username: root
+
+    rabbitmq:
+        host: 127.0.0.1
+        port: 5672
+        username: guest
+        password: guest
+        virtual-host: /
+        publisher-confirms: false #是否开启发送确认
+        publisher-returns: true #是否开启发送失败退回
+        listener:
+            simple:
+                concurrency: 10 #消费者数量
+                max-concurrency: 10 #最大消费者数量
+                prefetch: 1 #限流（消费者每次从队列获取的消息数量）
+                auto-startup: true  #启动时自动启动容器
+                acknowledge-mode: manual #开启ACK手动确认模式

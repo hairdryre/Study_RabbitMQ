@@ -1,0 +1,26 @@
+#服务器基本地址配置
+server:
+    port: 8080
+    servlet:
+        context-path: /SpringBootAndRabbitMQ
+
+#mybatis配置
+mybatis:
+    config-location: classpath:mybatis/mybatis-config.xml
+    mapper-locations: classpath:mybatis/mapper/*.xml
+
+spring:
+    # 环境 dev|test
+    profiles:
+        active: dev
+    # 指定静态资源的路径
+    resources:
+        static-locations: classpath:/static/,classpath:/templates/
+
+#自定义参数
+defineProps:
+    rabbit: #MQ队列名称
+        direct:
+            exchange: local::mq07:exchange:e01
+            routing.key: mq07::routeKey_robbing
+            queue: local::mq07:queue:q01
