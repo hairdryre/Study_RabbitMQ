@@ -1,0 +1,42 @@
+#服务器基本地址配置
+server:
+    port: 8080
+    servlet:
+        context-path: /rabbitmq10
+
+#mybatis配置
+#mybatis:
+#    config-location: classpath:mybatis/mybatis-config.xml
+#    mapper-locations: classpath:mybatis/mapper/*.xml
+
+spring:
+    # 环境 dev|test
+    profiles:
+        active: dev
+    # 指定静态资源的路径
+    resources:
+        static-locations: classpath:/static/,classpath:/templates/
+
+#自定义参数
+defineProps:
+    rabbit: #MQ队列名称
+        direct:
+            #死信交换机名称
+            dead.exchage: local::mq10:dead.exchange
+            #死信路由键名称
+            dead.routing.key: mq10::dead.routeKey
+            #死信队列名称
+            dead.queue: local::mq10:dead.queue
+
+            #面向生产端的交换机
+            produce.exchange: local::mq10:produce.exchange
+            #死信队列绑定面向生产端的路由键
+            produce.routing.key: mq10::routeKey
+            #接收端真正的消费监听队列
+            real.queue: local::mq10:real.queue
+
+
+
+
+
+
